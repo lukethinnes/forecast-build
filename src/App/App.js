@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { WeatherDay } from '../Components/WeatherDay'
+import styles from '../styles/styles.module.css'
+
 export const App = () => {
 
 	const locationKey = '80216'
@@ -25,6 +27,7 @@ export const App = () => {
 		.then(res => res.json())
 		.then(res => {
       setWeatherInfo(res.DailyForecasts.map(df => {
+          console.log(df)
         return {
           min: df.Temperature.Minimum.Value,
           max: df.Temperature.Maximum.Value,
@@ -35,9 +38,12 @@ export const App = () => {
     })
 	}, [])
 	return (
-    <div>
+    <div className={styles.main}>
       {!!weatherInfo && weatherInfo.map((i, index) => (
-        <div key={index}>
+        <div 
+        className={styles.day}
+        key={index}
+        >
           <WeatherDay 
             min={i.min} 
             max={i.max}   
