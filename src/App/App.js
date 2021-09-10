@@ -12,8 +12,19 @@ export const App = () => {
 			`http://dataservice.accuweather.com/forecasts/v1/daily/5day/locationKey=${locationKey}_PC?apikey=${apiKey}`
 		)
 		.then(res => res.json())
-		.then(res => console.log(res))
+		.then(res => setWeatherInfo(res.DailyForecasts.map(df => {
+		  return {
+		    min: df.Temperature.Minimum.Value,
+		    max: df.Temperature.Maximum.Value,
+        weatherType: df.Day.IconPhrase,
+		  }
+		})))
 	}, [])
+
+  useEffect(() => {
+    console.log(weatherInfo)
+  }, [weatherInfo])
+
 	return (<>Working!</>);
 }
 
