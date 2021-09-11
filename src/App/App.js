@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { WeatherDay } from '../Components/WeatherDay'
 import styles from '../styles/styles.module.css'
+import { apiKey } from '../constants.js'
+import { LocationSearch } from '../Components/LocationSearch.js'
 
 export const App = () => {
 
 	const locationKey = '80216'
-	const apiKey = 'KAUVd5lLRzoqgG66yOkm6nWzDGoJcupV'
 
   const [weatherInfo, setWeatherInfo] = useState();
 
@@ -38,12 +39,13 @@ export const App = () => {
     })
 	}, [])
 	return (
+  <div>
+  <LocationSearch />
     <div className={styles.main}>
       {!!weatherInfo && weatherInfo.map((i, index) => (
         <div 
         className={styles.day}
-        key={index}
-        >
+        key={index}>
           <WeatherDay 
             min={i.min} 
             max={i.max}   
@@ -53,6 +55,7 @@ export const App = () => {
         </div>
       ))}
     </div>
+  </div>
   );
 }
 

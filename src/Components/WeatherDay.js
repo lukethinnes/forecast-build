@@ -1,6 +1,6 @@
 export const WeatherDay = ({ date, min, max, weatherType, weatherKey }) => {
   return (
-    <div>
+    <>
       <img 
         alt={weatherType}
         src={`https://developer.accuweather.com/sites/default/files/${weatherKey}-s.png`}  
@@ -8,6 +8,6 @@ export const WeatherDay = ({ date, min, max, weatherType, weatherKey }) => {
       <div>
         Min: {min} Max: {max}
       </div>
-    </div>
+  </>
   );
 };
