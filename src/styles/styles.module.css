@@ -1,0 +1,18 @@
+.main {
+  display: flex;
+} 
+
+.day {
+  align-items: center;
+  background-color: gray;
+  border-radius: 5px;
+  box-shadow: 0px 0px 3px black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
+  justify-content: center;
+  margin: 15px;
+  text-shadow: 0px 0px 1px black;
+  padding: 10px;
+}

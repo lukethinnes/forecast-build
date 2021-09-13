@@ -24,13 +24,12 @@ export const App = () => {
 	useEffect(() => {
     if (locationKey) {
       fetch(
-        `http://dataservice.accuweather.com/forecasts/v1/daily/5day/locationKey=${locationKey}_PC?apikey=${apiKey}`
+        `http://dataservice.accuweather.com/forecasts/v1/daily/5day/locationKey=${locationKey}?apikey=${apiKey}`
       )
       .then(res => res.json())
-      .then(res => console.log(res))
       .then(res => {
         setWeatherInfo(res.DailyForecasts
-        .map(df => {
+          .map(df => {
           return {
             min: df.Temperature.Minimum.Value,
             max: df.Temperature.Maximum.Value,
@@ -46,7 +45,7 @@ export const App = () => {
   <div>
   <LocationSearch 
     onCityFound={cityInfo => {
-      setLocationKey(cityInfo.key)
+      setLocationKey(cityInfo.key) 
     }}
   />
     <div className={styles.main}>
