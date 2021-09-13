@@ -6,7 +6,7 @@ import { LocationSearch } from '../Components/LocationSearch.js'
 
 export const App = () => {
 
-	const locationKey = '80216'
+  const [locationKey, setLocationKey] = useState('')
 
   const [weatherInfo, setWeatherInfo] = useState();
 
@@ -22,25 +22,33 @@ export const App = () => {
   }
 
 	useEffect(() => {
-		fetch(
-			`http://dataservice.accuweather.com/forecasts/v1/daily/5day/locationKey=${locationKey}_PC?apikey=${apiKey}`
-		)
-		.then(res => res.json())
-		.then(res => {
-      setWeatherInfo(res.DailyForecasts.map(df => {
-          console.log(df)
-        return {
-          min: df.Temperature.Minimum.Value,
-          max: df.Temperature.Maximum.Value,
-          weatherType: df.Day.IconPhrase,
-          weatherKey: padNumber(df.Day.Icon)
-        }
-      }))
-    })
-	}, [])
+    if (locationKey) {
+      fetch(
+        `http://dataservice.accuweather.com/forecasts/v1/daily/5day/locationKey=${locationKey}_PC?apikey=${apiKey}`
+      )
+      .then(res => res.json())
+      .then(res => console.log(res))
+      .then(res => {
+        setWeatherInfo(res.DailyForecasts
+        .map(df => {
+          return {
+            min: df.Temperature.Minimum.Value,
+            max: df.Temperature.Maximum.Value,
+            weatherType: df.Day.IconPhrase,
+            weatherKey: padNumber(df.Day.Icon),
+          }
+        }))
+      })
+    }
+    }, [locationKey])
+
 	return (
   <div>
-  <LocationSearch />
+  <LocationSearch 
+    onCityFound={cityInfo => {
+      setLocationKey(cityInfo.key)
+    }}
+  />
     <div className={styles.main}>
       {!!weatherInfo && weatherInfo.map((i, index) => (
         <div 
