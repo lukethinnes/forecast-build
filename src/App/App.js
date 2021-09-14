@@ -10,6 +10,8 @@ export const App = () => {
 
   const [weatherInfo, setWeatherInfo] = useState();
 
+const [location, setLocation] = useState('')
+
   const padNumber = (number) => {
     const stringNumber = number + ''
     const stringLength = stringNumber.length
@@ -46,8 +48,10 @@ export const App = () => {
   <LocationSearch 
     onCityFound={cityInfo => {
       setLocationKey(cityInfo.key) 
+      setLocation(cityInfo.name + ', ' + cityInfo.state)
     }}
   />
+    <h1>{location}</h1>
     <div className={styles.main}>
       {!!weatherInfo && weatherInfo.map((i, index) => (
         <div 
