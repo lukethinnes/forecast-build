@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { apiKey } from '../constants.js'
+import styles from '../styles/styles.module.css'
 
 export const LocationSearch = ({ onCityFound }) => {
 
@@ -18,9 +19,10 @@ export const LocationSearch = ({ onCityFound }) => {
   }
 
   return (
-    <div>
+    <div className={styles.main}>
       <input 
         onChange={e => setZipCode(e.target.value)}
+        placeholder='Zip Code'
         value={zipCode}
       />
       <button onClick={() => getLocation(zipCode)}>Search</button>
