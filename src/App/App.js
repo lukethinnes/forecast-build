@@ -42,7 +42,7 @@ export const App = () => {
     }, [locationKey])
 
 	return (
-  <div>
+  <div className={styles.searchContainer}>
   <LocationSearch 
     onCityFound={cityInfo => {
       setLocationKey(cityInfo.key) 
