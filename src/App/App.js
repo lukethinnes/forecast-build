@@ -44,6 +44,10 @@ const [location, setLocation] = useState('')
     }, [locationKey])
 
 	return (
+        <>
+        <div className={styles.header}>
+            FORECASTER
+        </div>
   <div className={styles.searchContainer}>
   <LocationSearch 
     onCityFound={cityInfo => {
@@ -67,6 +71,7 @@ const [location, setLocation] = useState('')
       ))}
     </div>
   </div>
+        </>
   );
 }
 

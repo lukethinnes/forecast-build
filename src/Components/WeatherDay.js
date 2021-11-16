@@ -8,6 +8,9 @@ export const WeatherDay = ({ date, min, max, weatherType, weatherKey }) => {
       <div>
         Min: {min} Max: {max}
       </div>
+      <div>
+       {date} 
+      </div>
   </>
   );
 };
